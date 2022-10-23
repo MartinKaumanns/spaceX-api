@@ -1,0 +1,17 @@
+.launches-card {
+  h3 {
+    text-transform: uppercase;
+  }
+  color: rgb(196, 196, 196);
+  text-align: left;
+  width: 30vw;
+  height: 200px;
+  margin: 0 0.5rem;
+  padding: 1rem;
+  background-color: rgb(84, 84, 84);
+
+  @media (max-width: 800px) {
+    width: calc(100vw - 2rem);
+    margin: 0.5rem 0;
+  }
+}

@@ -1,0 +1,21 @@
+.SearchResult {
+  position: relative;
+
+  margin: 0 auto;
+  padding: 2rem;
+  width: calc(100vw - 3rem);
+  height: 40vw;
+  background-color: lightgrey;
+  text-align: left;
+
+  @media (max-width: 800px) {
+    h1 {
+      font-size: 1.8rem;
+      max-width: 60vw;
+      text-transform: uppercase;
+    }
+    padding: 0.8rem;
+    width: calc(100vw - 2rem);
+    height: 40vh;
+  }
+}
