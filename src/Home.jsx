@@ -10,7 +10,7 @@ const Home = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        const launchesData = data.slice(Math.max(data.length - 3, 1));
+        const launchesData = data.slice(Math.max(data.length - 3));
         // console.log('lauchesData:', launchesData);
         setPastLauchesData(launchesData);
       });
@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <div>
       <SearchFeature />
-      <PastLaunches data={pastLaunchesData} />
+      {pastLaunchesData && <PastLaunches data={pastLaunchesData} />}
     </div>
   );
 };

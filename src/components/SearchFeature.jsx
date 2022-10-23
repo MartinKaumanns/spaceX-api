@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Searchbar from './Searchbar';
 import SearchError from './SearchError';
 import SearchResult from './SearchResult';
@@ -26,7 +26,8 @@ const SearchFeature = () => {
         .then((data) =>
           // console.log(data);
           setAnswer(data)
-        );
+        )
+        .catch((err) => console.log(err));
 
     setSearchId('');
     setError(false);

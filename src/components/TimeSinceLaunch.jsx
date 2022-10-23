@@ -9,25 +9,41 @@ import './TimeSinceLaunch.scss';
 // 5eb87cd9ffd86e000604b32a  <- Mission failed
 
 const TimeSinceLaunch = ({ launchId, launchTime, Success }) => {
-  const [days, setDays] = useState(0);
+  // const [years, setYears] = useState(0);
+  /* const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(0);
+  const [seconds, setSeconds] = useState(0); */
 
-  const launchTimeInMillis = Date.parse(launchTime);
+  const [message, setMessage] = useState('');
 
-  const getTime = () => {
-    const time = Date.now() - launchTimeInMillis;
+  const getTime = (time) => {
+    const launchTimeInMillis = Date.parse(time);
+    const timeDifference = Date.now() - launchTimeInMillis;
 
-    setDays(Math.floor(time / (1000 * 60 * 60 * 24)));
+    /* setDays(Math.floor(time / (1000 * 60 * 60 * 24)));
     setHours(Math.floor((time / (1000 * 60 * 60)) % 24));
     setMinutes(Math.floor((time / (1000 * 60)) % 60));
-    setSeconds(Math.floor((time / 1000) % 60));
+    setSeconds(Math.floor((time / 1000) % 60)); */
+
+    const Years = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365));
+    const Days = Math.floor((timeDifference / (1000 * 60 * 60 * 24)) % 365);
+    const Hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
+    const Minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+    const Seconds = Math.floor((timeDifference / 1000) % 60);
+
+    /* {`${days > 365 ? Math.floor(days / 365) + ' y' : days + ' d'} | ${
+      hours + ' h'
+    } | ${minutes < 2 ? minutes + ' min' : minutes + ' mins'} | ${
+      seconds < 10 ? '0' + seconds : seconds
+    } ${seconds < 2 ? ' sec' : ' secs'}`} */
+
+    setMessage(` ${Years} : ${Days} : ${Hours} : ${Minutes} : ${Seconds}`);
   };
 
   useEffect(() => {
     const interval = setInterval(() => {
-      getTime(launchTimeInMillis);
+      getTime(launchTime);
     }, 1000);
     return () => clearInterval(interval);
   });
@@ -37,11 +53,7 @@ const TimeSinceLaunch = ({ launchId, launchTime, Success }) => {
       <div className="time-id-container">
         <div className="time-wrapper">
           <h3>Elapsed time since launch</h3>
-          <h2>{`${days > 365 ? Math.floor(days / 365) + ' y' : days + ' d'} | ${
-            hours + ' h'
-          } | ${minutes < 2 ? minutes + ' min' : minutes + ' mins'} | ${
-            seconds < 10 ? '0' + seconds : seconds
-          } ${seconds < 2 ? ' sec' : ' secs'}`}</h2>
+          <h2>{message}</h2>
         </div>
         <small> Id: {launchId}</small>
       </div>
