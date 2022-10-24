@@ -9,7 +9,7 @@ const Home = () => {
     fetch('https://api.spacexdata.com/v4/launches/past')
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         const launchesData = data.slice(Math.max(data.length - 3));
         // console.log('lauchesData:', launchesData);
         setPastLauchesData(launchesData);
