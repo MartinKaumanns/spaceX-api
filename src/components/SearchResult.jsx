@@ -4,8 +4,6 @@ import './SearchResult.scss';
 import TimeSinceLaunch from './TimeSinceLaunch';
 
 const SearchResult = ({ answer }) => {
-  // console.log('SearchResults: ', answer);
-
   return (
     answer && (
       <div className="SearchResult">

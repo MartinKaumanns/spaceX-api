@@ -6,8 +6,6 @@ import './PastLaunches.scss';
 const PastLaunches = ({ data }) => {
   const lastThreeLaunches = data;
 
-  // console.log(lastThreeLaunches[0].id);
-
   return (
     <div className="PastLaunches">
       <Heading />
